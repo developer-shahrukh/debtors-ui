@@ -64,13 +64,13 @@ function Navbar() {
         </Typography>
         <Pets sx={{ display: { xs: "block", sm: "none" } }} />
         <Search>
-          <InputBase placeholder="Search..." />
+          <InputBase placeholder="Search..."/>
         </Search>
         <Icons>
           <Badge badgeContent={4} color="error">
             <Mail />
           </Badge>
-          <Badge badgeContent={4} color="error">
+          <Badge badgeContent={2} color="error">
             <Notifications />
           </Badge>
           <Avatar

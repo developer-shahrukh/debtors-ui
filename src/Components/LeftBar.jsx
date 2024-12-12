@@ -16,90 +16,87 @@ import {
   Switch,
 } from "@mui/material";
 import React from "react";
-import Items from "../Pages/Items";
-import Customers from "../Pages/Customers";
-import Invoices from "../Pages/Invoices";
-import Traders from "../Pages/Traders";
-import {Route, Router, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-
-
-
-function LeftBar({mode,setMode}) {
-  const [currentPath, setCurrentPath] = React.useState(window.location.pathname);
-
+function LeftBar({ mode, setMode }) {
+  const [currentPath, setCurrentPath] = React.useState(
+    window.location.pathname
+  );
   const navigate = (path) => {
     setCurrentPath(path);
     window.history.pushState({}, "", path);
   };
 
   return (
-    <Box 
-     flex={1} p={2} 
-     sx={{display : { xs: "none", sm: "block" }}}
-     bgcolor={"background.default"} color={"text.primary"}
-    >
-      <Box position='fixed'>
-        
-      <List>
+    <Box
+      flex={1}
+      p={2}
+      sx={{ display: { xs: "none", sm: "block" } }}
+      bgcolor={"background.default"}
+      color={"text.primary"}
       
+      
+    >
+      <Box position="fixed">
+        <List>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#">
+            <ListItemButton component={Link} to="/home">
               <ListItemIcon>
-                <Dashboard/>
+                <Dashboard />
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItemButton>
           </ListItem>
 
           <ListItem disablePadding>
-            <ListItemButton component="a" href='/Items'>
+            <ListItemButton component={Link} to="/items">
               <ListItemIcon>
-                <Inventory2/>
+                <Inventory2 />
               </ListItemIcon>
               <ListItemText primary="Items" />
             </ListItemButton>
           </ListItem>
 
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#">
+            <ListItemButton component={Link} to="/customers">
               <ListItemIcon>
-                <Person/>
+                <Person />
               </ListItemIcon>
               <ListItemText primary="Customers" />
             </ListItemButton>
           </ListItem>
 
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#">
+            <ListItemButton component={Link} to="/invoices">
               <ListItemIcon>
-                <Receipt/>
+                <Receipt />
               </ListItemIcon>
               <ListItemText primary="Invoices" />
             </ListItemButton>
           </ListItem>
 
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#">
+            <ListItemButton component={Link} to="/traders">
               <ListItemIcon>
-                <Store/>
+                <Store />
               </ListItemIcon>
               <ListItemText primary="Traders" />
             </ListItemButton>
           </ListItem>
 
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#">
+            <ListItemButton component={Link} to="#">
               <ListItemIcon>
-                <ModeNight/>
+                <ModeNight />
               </ListItemIcon>
             </ListItemButton>
-            <Switch onChange={e=>setMode(mode === "light" ? "dark" : "light")}/>
+            <Switch
+              onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
+            />
           </ListItem>
         </List>
-        
-        </Box>
-      </Box> 
+      </Box>
+    </Box>
   );
 }
 

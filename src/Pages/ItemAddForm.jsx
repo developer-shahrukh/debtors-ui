@@ -291,8 +291,8 @@ const ItemAddForm = (props) => {
                     <div className={"mainContainer"}>
                         <div className={"leftContainer"}>
                             <h3 className={"heading"}>Select From</h3>
-                            {leftList.map(item => (
-                                <div key={item.code} id={item.code}>
+                            {leftList.map((item,index) => (
+                                <div key={item.code || index} id={item.code}>
                                     <input
                                         type="checkbox"
                                         checked={selectedRightItems.includes(item)}
@@ -329,7 +329,7 @@ const ItemAddForm = (props) => {
                 </DialogActions>
             </Dialog>
             <Snackbar
-                open={snackbarOpenState}
+                open={snackbarOpenState==="true"}
                 message={snackbarMessage}
                 onClose={closeSnackbar}
                 autoHideDuration={5000}
