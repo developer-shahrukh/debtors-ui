@@ -325,7 +325,7 @@ function Items() {
   };
 
   const ItemDetails = ({ selectedItemCode, items }) => {
-    
+
     getByCode(selectedItemCode).then((i) => {
       //console.log(i);
       //console.log(i.length);
