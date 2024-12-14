@@ -153,7 +153,6 @@ const editItem = (ev) => {
 function Items() {
   const [items, setItems] = React.useState([]);
   const [uoms, setUoms] = React.useState([]);
-  const [iUoms, setIuoms] = React.useState([]);
   const [showProgress, setShowProgress] = React.useState(true);
   const [selectedItemCode, setSelectedItemCode] = React.useState(0);
 
@@ -325,17 +324,21 @@ function Items() {
   };
 
   const ItemDetails = ({ selectedItemCode, items }) => {
-
-    getByCode(selectedItemCode).then((i) => {
-      //console.log(i);
-      //console.log(i.length);
-      const uomCodes = i.map((item) => item.unitOfMeasurements);
-      const matchedUoms = uomCodes.map((code) =>
-        uoms.find((u) => u.code === code)
-      );
-      //console.log(matchedUoms);
-      setIuoms(matchedUoms);
-    });
+    const [iUoms, setIuoms] = React.useState([]);
+    React.useEffect(() => {
+      console.log("Use effect");
+      if (selectedItemCode) {
+        console.log("When item selected");  
+          getByCode(selectedItemCode).then((i) => {
+              const uomCodes = i.map((item) => item.unitOfMeasurements);
+              const matchedUoms = uomCodes.map((code) =>
+                  uoms.find((u) => u.code === code)
+              );
+              setIuoms(matchedUoms);
+          });
+      }
+  }, [selectedItemCode, uoms]);
+  
     const item = items.find((i) => i.code == selectedItemCode);
     const styleClasses = myStyles();
     return !item || !item.name ? null : (
@@ -375,7 +378,7 @@ function Items() {
                   <li>No Uom available in this item</li>
                 ) : (
                   iUoms.map((u, index) => (
-                    <li list-style-type="none" key={u.code || index}>{u.name}</li>
+                    <li key={u.code || index}>{u.name}</li>
                 )) 
                 )}
               </ul>
