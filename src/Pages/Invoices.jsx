@@ -315,6 +315,7 @@ const Invoices = () => {
   };
 
   const addItem = () => {
+    
     //alert(selectedItems+","+hsnCode+","+uom);
     //alert(cgst+","+igst+","+sgst);
     //alert(rate+","+quantity);
@@ -448,8 +449,22 @@ const Invoices = () => {
   };
 
   const OpenItemModal = () => {
-    const [localRate, setLocalRate] = React.useState(rate);
-    const [localQuantity, setLocalQuantity] =React.useState(quantity);
+    const [rate, setRate] =React.useState("");
+    const [quantity, setQuantity] = React.useState("");
+    const [localRate, setLocalRate] = React.useState("");
+    const [localQuantity, setLocalQuantity] = React.useState("");
+
+    const handleRateChange = (e) => {
+      setLocalRate(e.target.value); // Update local state
+    };
+
+    const handleQuantityChange = (e) => {
+      setLocalQuantity(e.target.value); // Update local state
+    };
+
+    // Sync local state to main state only when necessary
+    const syncRate = () => setRate(localRate);
+    const syncQuantity = () => setQuantity(localQuantity);
 
     React.useEffect(() => {
       setLocalRate(rate); // Sync local state with parent state
@@ -483,7 +498,6 @@ const Invoices = () => {
           disableEscapeKeyDown
           disableBackdropClick
         >
-            
           <DialogTitle>Item Details</DialogTitle>
           <DialogContent>
             <Select
@@ -551,19 +565,18 @@ const Invoices = () => {
               required
               label="rate"
               value={localRate}
-              onChange={(e) => setLocalRate(e.target.value)}
-              onBlur={updateRate} // Update parent state only when user leaves the field
+              onChange={handleRateChange}
+              onBlur={syncRate} // Update parent state only when user leaves the field
               fullWidth
             />
             <TextField
               required
               label="quantity"
               value={localQuantity}
-              onChange={(e) => setLocalQuantity(e.target.value)}
-              onBlur={updateQuantity}
+              onChange={handleQuantityChange}
+              onBlur={syncQuantity}
               fullWidth
             />
-            
           </DialogContent>
           <DialogActions>
             <Button variant="contained" color="primary" onClick={addItem}>
