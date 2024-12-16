@@ -316,13 +316,9 @@ const Invoices = () => {
 
   const addItem = () => {
     
-    //alert(selectedItems+","+hsnCode+","+uom);
-    //alert(cgst+","+igst+","+sgst);
-    //alert(rate+","+quantity);
+    
     var item = items.find((i) => i.code == selectedItems);
-    //alert(item.name);
     var u = uoms.find((u) => u.code == uom);
-    //alert(u.name);
     var name = item.name;
     var uName = u.name;
     var amount = rate * quantity;
