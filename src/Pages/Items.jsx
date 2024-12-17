@@ -1,9 +1,15 @@
 import { BlurCircular, Delete, Edit } from "@mui/icons-material";
 import {
   Box,
+  Button,
   Card,
   CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Paper,
+  Snackbar,
   Table,
   TableBody,
   TableCell,
@@ -11,6 +17,7 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  TextField,
   Typography,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -146,11 +153,11 @@ const getByCode = (code) => {
   return promise;
 };
 
-const editItem = (ev) => {
-  alert(ev.currentTarget.id);
-};
 
 function Items() {
+
+  const [openEditModal,setOpenEditModal]=React.useState(false);
+
   const [items, setItems] = React.useState([]);
   const [uoms, setUoms] = React.useState([]);
   const [showProgress, setShowProgress] = React.useState(true);
@@ -182,6 +189,14 @@ function Items() {
   const closeAlert = () => {
     setOpenState(false);
   };
+
+  const handleCloseEditModal=()=>{
+    setOpenEditModal(false);
+  }
+  const editItem = (ev) => {
+    //alert(ev.currentTarget.id);
+    setOpenEditModal(true);
+  }
 
   const deleteItem = (ev) => {
     var code = ev.currentTarget.id;

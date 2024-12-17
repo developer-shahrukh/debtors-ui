@@ -299,6 +299,7 @@ const Invoices = () => {
   };
   const closeItemDialog = () => {
     setItemDialogState(false);
+    clearItemForm();
   };
 
   const onSelectedAllClicked = () => {
@@ -696,7 +697,7 @@ const Invoices = () => {
                         <TableCell>{item.uName}</TableCell>
                         <TableCell>{item.rate}</TableCell>
                         <TableCell>{item.quantity}</TableCell>
-                        <TableCell>{item.taxableAmount}</TableCell>
+                        <TableCell>{item.taxableAmount.toFixed(2)}</TableCell>
                         {isSameState ? (
                           <>
                             <TableCell>{item.cgst}%</TableCell>
@@ -705,7 +706,7 @@ const Invoices = () => {
                         ) : (
                           <TableCell>{item.igst}%</TableCell>
                         )}
-                        <TableCell>{item.amount}</TableCell>
+                        <TableCell>{item.amount.toFixed(2)}</TableCell>
                       </TableRow>
                     );
                   })
