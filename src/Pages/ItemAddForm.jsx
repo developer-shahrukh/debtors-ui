@@ -119,7 +119,7 @@ const ItemAddForm = (props) => {
             setIsName(true);
             setNameError("Item Name required");
         }
-       /* if (!hsnCode || hsnCode <= 0) {
+        /*if (!hsnCode || hsnCode <= 0) {
             hashError = true;
             setIsHsnCode(true);
             setHsnCodeError("HSN Code cannot be zero");
@@ -191,6 +191,7 @@ const ItemAddForm = (props) => {
         clearAllErrors();
         var code = 0;
         if (validateForm()) {
+            alert("False");
             return;
         }
         //console.log(props.openState,props.alertType,props.message)

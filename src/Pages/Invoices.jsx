@@ -284,6 +284,10 @@ const Invoices = () => {
   }, []);
 
   const isItemSelected = (code) => {
+    if (!Array.isArray(selectedItems)) {
+      console.error("selectedItems should be an array");
+      return false;
+    }
     return selectedItems.indexOf(code) != -1;
   };
 
@@ -301,7 +305,9 @@ const Invoices = () => {
     setItemDialogState(false);
     clearItemForm();
   };
-
+  const deleteItemInTable=()=>{
+    alert(selectedItems);
+  }
   const onSelectedAllClicked = () => {
     var selections = [];
     if (areAllSelected) {
@@ -316,8 +322,7 @@ const Invoices = () => {
   };
 
   const addItem = () => {
-    
-    
+    console.log(`Add item : ${rate} : ${quantity}`);
     var item = items.find((i) => i.code == selectedItems);
     var u = uoms.find((u) => u.code == uom);
     var name = item.name;
@@ -360,7 +365,7 @@ const Invoices = () => {
   };
 
   const clearItemForm = () => {
-    setSelectedItems("");
+    setSelectedItems([]);
     setHsnCode("");
     setSelectedUoms("");
     setCgst("");
@@ -446,17 +451,17 @@ const Invoices = () => {
   };
 
   const OpenItemModal = () => {
-    const [rate, setRate] =React.useState("");
-    const [quantity, setQuantity] = React.useState("");
     const [localRate, setLocalRate] = React.useState("");
     const [localQuantity, setLocalQuantity] = React.useState("");
 
     const handleRateChange = (e) => {
       setLocalRate(e.target.value); // Update local state
+      console.log("Local Rate : ", e.target.value);
     };
 
     const handleQuantityChange = (e) => {
       setLocalQuantity(e.target.value); // Update local state
+      console.log("Local Quantity : ", e.target.value);
     };
 
     // Sync local state to main state only when necessary
@@ -465,10 +470,12 @@ const Invoices = () => {
 
     React.useEffect(() => {
       setLocalRate(rate); // Sync local state with parent state
+      console.log("Use Effect Rate : ", rate);
     }, [rate]);
 
     React.useEffect(() => {
       setLocalQuantity(quantity); // Sync local state with parent state
+      console.log("Use Effect Quantity : ", quantity);
     }, [quantity]);
 
     const updateRate = React.useCallback(() => {
@@ -481,6 +488,14 @@ const Invoices = () => {
 
     return (
       <Paper>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ float: "right", marginLeft: "5px" }}
+          onClick={deleteItemInTable}
+        >
+          <Delete />
+        </Button>
         <Button
           variant="contained"
           color="primary"
@@ -673,6 +688,7 @@ const Invoices = () => {
                       textAlign: "center",
                       fontWeight: "600",
                       fontSize: "15pt",
+                      color: "#A0C4FF"
                     }}
                   >
                     No data available in table
@@ -893,24 +909,24 @@ const Invoices = () => {
                     className={styleClasses.customerDetails}
                   >
                     <span className={styleClasses.data}>
-                      <AccountCircle />
+                      {customer.name && <AccountCircle />}
                       {customer.name}
                     </span>
                     <br />
                     <span className={styleClasses.data}>
-                      <Home />
+                      {customer.address && <Home />}
                       {customer.address}
                     </span>
                     <br />
                     <span className={styleClasses.data}>
-                      <Call />
+                      {customer.contact1 && <Call />}
                       {customer.contact1}
                     </span>
                     <br />
                     <span className={styleClasses.data}>{customer.gst}</span>
                     <br />
                     <span className={styleClasses.data}>
-                      <Place />
+                      {customer.stateCode && <Place />}
                       {findState(customer.stateCode).name}
                     </span>
                     <br />
@@ -930,13 +946,6 @@ const Invoices = () => {
         <Typography variant="h3" className={styleClasses.heading}>
           Invoices Generate
         </Typography>
-        <Button
-          className={styleClasses.button}
-          variant="contained"
-          color="primary"
-        >
-          <Delete />
-        </Button>
       </Card>
 
       <Card className={styleClasses.innerContainer}>
