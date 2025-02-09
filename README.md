@@ -57,7 +57,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ![Alt Invoice 3](./assets/Invoice3.png)
 ![Alt Invoice 4](./assets/Invoice4.png)
 ![Alt Trader](./assets/Trader.png)
-![Alt Trader edit](./assets/TraderEditMode.png)
+![Alt Trader edit](./assets/TraderInEditMode.png)
 
 ### Code Splitting
 
