@@ -45,6 +45,20 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
+### Screenshots
+![Alt Item](./assets/Item.png)
+![Alt Item add form](./assets/AddItemForm.png)
+![Alt Item details](./assets/ItemWithDetails.png)
+![Alt Customer](./assets/Customer.png)
+![Alt Customer add form](./assets/CustomerAddForm.png)
+![Alt Customer details](./assets/CustomerWithDetails.png)
+![Alt Invoice 1](./assets/Invoice1.png)
+![Alt Invoice 2](./assets/Invoice2.png)
+![Alt Invoice 3](./assets/Invoice3.png)
+![Alt Invoice 4](./assets/Invoice4.png)
+![Alt Trader](./assets/Trader.png)
+![Alt Trader edit](./assets/TraderEditMode.png)
+
 ### Code Splitting
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
